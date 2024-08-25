@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn, formateNumber } from "@/lib/utils";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
-import { likeComment } from "../../actions/likes";
+import { dislikeComment, likeComment } from "../../actions/likes";
 import { InitialLikeType } from "@/types";
 import axios from "axios";
 
@@ -26,7 +26,7 @@ const CommentLikeButton = ({ commentId, videoId, initialLikeState }: Props) => {
   });
 
   const { mutate } = useMutation({
-    mutationFn: likeComment,
+    mutationFn: data.isLiked ? dislikeComment : likeComment,
     onMutate: () => {
       queryCLient.cancelQueries({ queryKey });
 

@@ -57,7 +57,7 @@ export const likeComment = async (commentId: string) => {
       data: {
         type: "COMMENT",
         userId: loggedInUser.id,
-        videoId: commentId,
+        commentId: commentId,
       },
     });
 
