@@ -42,7 +42,7 @@ const Video = async ({ video }: Props) => {
         autoPlay
         controls
       />
-      <h1 className="mt-4 text-2xl font-bold">{video.title}</h1>
+      <h1 className="mt-4 text-xl md:text-2xl font-bold">{video.title}</h1>
       <h1 className="mb-4 mt-2 text-sm md:text-base font-semibold">{video.description}</h1>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-5">
