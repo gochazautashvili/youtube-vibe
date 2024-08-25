@@ -16,7 +16,7 @@ interface Props {
 const UploadVideoDialog = ({ handleOpenChange, open }: Props) => {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="w-[95%] rounded md:max-w-[80%]">
+      <DialogContent className="w-[95%] rounded md:max-w-[80%]  max-h-[600px] overflow-y-auto">
         <DialogHeader className="hidden">
           <DialogTitle />
           <DialogDescription />
