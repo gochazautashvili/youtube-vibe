@@ -1,0 +1,124 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  username String
+  avatar   String
+  email    String  @unique
+  googleId String  @unique
+  banner   String?
+
+  videos    Video[]
+  likes     Like[]
+  histories History[]
+  comments  Comment[]
+
+  subscriber Subscribe[] @relation("subscriber")
+  subscribe  Subscribe[] @relation("subscribe")
+
+  createdAt DateTime @default(now())
+
+  @@index([username])
+  @@map("users")
+}
+
+model Video {
+  id String @id @default(uuid())
+
+  title       String
+  description String
+  thumbnail   String
+  video       String
+
+  likes     Like[]
+  histories History[]
+  comments  Comment[]
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  createdAt DateTime @default(now())
+
+  @@index([title, description])
+  @@map("videos")
+}
+
+model Subscribe {
+  id String @id @default(uuid())
+
+  subscriber   User   @relation("subscriber", fields: [subscriberId], references: [id], onDelete: Cascade)
+  subscriberId String
+
+  subscribe   User   @relation("subscribe", fields: [subscribeId], references: [id], onDelete: Cascade)
+  subscribeId String
+
+  createdAt DateTime @default(now())
+
+  @@unique([subscribeId, subscriberId])
+  @@index([subscribeId])
+  @@map("subscribes")
+}
+
+model Like {
+  id String @id @default(uuid())
+
+  type LikeType
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  video     Video?   @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  videoId   String?
+  Comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId String?
+
+  @@map("likes")
+}
+
+model Comment {
+  id String @id @default(uuid())
+
+  body String
+
+  likes Like[]
+
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  String
+  video   Video  @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  videoId String
+
+  createdAt DateTime @default(now())
+
+  @@index([videoId])
+  @@map("comments")
+}
+
+model History {
+  id String @id @default(uuid())
+
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  String
+  video   Video  @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  videoId String
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, videoId])
+  @@index([userId])
+  @@map("histories")
+}
+
+enum LikeType {
+  VIDEO
+  COMMENT
+}
