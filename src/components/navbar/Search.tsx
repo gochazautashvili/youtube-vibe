@@ -33,7 +33,7 @@ const Search = ({ className }: Props) => {
         placeholder="Search"
       />
       <Button type="submit" className="h-full rounded-none dark:bg-black">
-        <SearchIcon />
+        <SearchIcon className="dark:fill-white" />
       </Button>
     </form>
   );
