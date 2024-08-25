@@ -28,7 +28,7 @@ const VideoCard = ({ video }: Props) => {
             priority
             alt={video.title}
             src={video.thumbnail}
-            className="h-full w-full cursor-pointer rounded-xl object-cover"
+            className="h-full w-full cursor-pointer rounded-xl object-cover a"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>

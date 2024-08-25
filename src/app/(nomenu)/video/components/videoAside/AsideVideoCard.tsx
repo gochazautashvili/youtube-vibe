@@ -17,7 +17,7 @@ const AsideVideoCard = ({ video }: Props) => {
             height={100}
             alt={video.title}
             src={video.thumbnail}
-            className="h-[100px] w-[170px] shrink-0 cursor-pointer rounded-md object-cover"
+            className="h-[100px] w-[170px] shrink-0 cursor-pointer rounded-md bg-gray-400 object-cover"
           />
         </div>
       </Link>
