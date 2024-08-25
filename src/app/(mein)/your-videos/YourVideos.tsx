@@ -2,12 +2,14 @@
 import InfinityScrollWrapper from "@/components/InfinityScrollWrapper";
 import VideoCard from "@/components/VideoCard";
 import VideoCardSkeletons from "@/components/VideoCardSkeletons";
+import useUser from "@/hooks/useUser";
 import { VideoPages } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 
 const YourVideos = () => {
+  const user = useUser();
   const { fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, data } =
     useInfiniteQuery({
       queryKey: ["videos", "your-videos"],
@@ -17,6 +19,7 @@ const YourVideos = () => {
             `/api/videos/your-videos?cursor=${pageParam ? pageParam : ""}`,
           )
           .then((res) => res.data),
+      enabled: !!user,
       initialPageParam: null as string | null,
       getNextPageParam: (lastPage) => lastPage.nextCursor,
     });
@@ -28,6 +31,14 @@ const YourVideos = () => {
       fetchNextPage();
     }
   };
+
+  if (!user) {
+    return (
+      <p className="text-center text-destructive">
+        You are not authorized, go and sign in to get this page
+      </p>
+    );
+  }
 
   if (isLoading) {
     return <VideoCardSkeletons />;

@@ -23,6 +23,8 @@ export const subscribe = async (userId: string) => {
 
     return { success: true };
   } catch (error) {
+    console.log(error);
+
     throw new Error("Internal server error");
   }
 };

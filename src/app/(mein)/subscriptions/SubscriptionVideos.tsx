@@ -33,6 +33,14 @@ const SubscriptionVideos = () => {
     }
   };
 
+  if (!user) {
+    return (
+      <p className="text-center text-destructive">
+        You are not authorized, go and sign in to get this page
+      </p>
+    );
+  }
+
   if (isLoading) {
     return <VideoCardSkeletons />;
   }

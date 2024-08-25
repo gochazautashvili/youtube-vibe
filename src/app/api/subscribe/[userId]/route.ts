@@ -21,9 +21,9 @@ export async function GET(req: Request, { params: { userId } }: Props) {
       select: {
         subscriber: {
           where: {
-            subscribeId: loggedInUser.id,
+            subscriberId: loggedInUser.id,
           },
-          select: { subscribeId: true },
+          select: { subscriberId: true },
         },
         _count: {
           select: {

@@ -56,10 +56,10 @@ model Video {
 model Subscribe {
   id String @id @default(uuid())
 
-  subscriber   User   @relation("subscriber", fields: [subscriberId], references: [id], onDelete: Cascade)
+  subscriber   User   @relation("subscribe", fields: [subscriberId], references: [id], onDelete: Cascade)
   subscriberId String
 
-  subscribe   User   @relation("subscribe", fields: [subscribeId], references: [id], onDelete: Cascade)
+  subscribe   User   @relation("subscriber", fields: [subscribeId], references: [id], onDelete: Cascade)
   subscribeId String
 
   createdAt DateTime @default(now())

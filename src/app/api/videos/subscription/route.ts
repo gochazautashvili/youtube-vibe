@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const videos = await db.video.findMany({
-      where: { user: { subscribe: { some: { subscriberId: user.id } } } },
+      where: { user: { subscriber: { some: { subscriberId: user.id } } } },
       take: pageSize + 1,
       include: videoDataInclude,
       orderBy: { createdAt: "desc" },
