@@ -26,7 +26,7 @@ const AsideVideoCard = ({ video }: Props) => {
           {video.title}
         </Link>
         <Link
-          href={`/channel/${video.id}`}
+          href={`/channel/${video.userId}`}
           className="mb-px mt-1 text-sm text-gray-400"
         >
           {video.user.username}
