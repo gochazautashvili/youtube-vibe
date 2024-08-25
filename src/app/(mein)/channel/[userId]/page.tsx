@@ -18,7 +18,11 @@ const YourChannelPage = async ({ params: { userId } }: Props) => {
   const loggedInUser = await getUser();
 
   if (!user) {
-    notFound();
+    return (
+      <p className="text-center text-destructive">
+        You are not authorized, go and sign in to get this page
+      </p>
+    );
   }
 
   return (
