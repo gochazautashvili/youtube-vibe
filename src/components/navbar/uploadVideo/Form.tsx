@@ -61,7 +61,7 @@ const Form = () => {
     <VideoForm {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 gap-10">
-          <div className="grid grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <FormField
               control={form.control}
               name="video"
