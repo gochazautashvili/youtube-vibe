@@ -1,6 +1,6 @@
 import YourVideos from "./YourVideos";
 
-const YourVideosPage = async () => {
+const YourVideosPage = () => {
   return <YourVideos />;
 };
 

@@ -1,6 +1,6 @@
 import LikedVideos from "./LikedVideos";
 
-const LikedVideosPage = async () => {
+const LikedVideosPage = () => {
   return <LikedVideos />;
 };
 

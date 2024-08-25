@@ -1,7 +1,7 @@
 import React from "react";
 import SubscriptionVideos from "./SubscriptionVideos";
 
-const SubscriptionPage = async () => {
+const SubscriptionPage = () => {
   return <SubscriptionVideos />;
 };
 
