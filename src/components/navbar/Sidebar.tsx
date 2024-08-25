@@ -2,10 +2,10 @@ import { sidebarLinks, sidebarLinksYou } from "@/lib/helpers";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
 import { ArrowRight } from "lucide-react";
-import getUser from "@/data/getUser";
+import useUser from "@/hooks/useUser";
 
-const Sidebar = async () => {
-  const user = await getUser();
+const Sidebar = () => {
+  const user = useUser();
 
   return (
     <aside className="space-y-4 px-3 py-2">

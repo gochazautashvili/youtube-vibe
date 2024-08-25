@@ -3,12 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Download, Loader2 } from "lucide-react";
 import { download } from "../../actions/video";
 import { useTransition } from "react";
+import { cn } from "@/lib/utils";
 
 interface Props {
   videoUrl: string;
+  className?: string;
 }
 
-const DownloadButton = ({ videoUrl }: Props) => {
+const DownloadButton = ({ videoUrl, className }: Props) => {
   const [isDownloading, startDownload] = useTransition();
   const handleDownload = () => {
     startDownload(() => {
@@ -27,7 +29,10 @@ const DownloadButton = ({ videoUrl }: Props) => {
     <Button
       disabled={isDownloading}
       onClick={handleDownload}
-      className="bg-blue-600 hover:bg-blue-800 dark:bg-blue-400"
+      className={cn(
+        "bg-blue-600 hover:bg-blue-800 dark:bg-blue-400",
+        className,
+      )}
     >
       {isDownloading ? (
         <Loader2 className="mr-4 size-5 animate-spin" />

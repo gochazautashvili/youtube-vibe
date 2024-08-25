@@ -14,9 +14,15 @@ interface Props {
   };
   isUserSignIn: boolean;
   videoId: string;
+  className?: string;
 }
 
-const LikeButton = ({ initialLikeState, isUserSignIn, videoId }: Props) => {
+const LikeButton = ({
+  initialLikeState,
+  isUserSignIn,
+  videoId,
+  className,
+}: Props) => {
   const { data } = useQuery({
     queryKey: ["likes", videoId],
     queryFn: () =>
@@ -65,6 +71,7 @@ const LikeButton = ({ initialLikeState, isUserSignIn, videoId }: Props) => {
       className={cn(
         "disabled:bg-gray-600",
         data.isLiked && "bg-blue-600 hover:bg-blue-800",
+        className,
       )}
     >
       <Heart

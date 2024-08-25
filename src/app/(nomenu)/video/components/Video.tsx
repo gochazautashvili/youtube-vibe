@@ -6,6 +6,13 @@ import SubscriberCount from "./ui/SubscriberCount";
 import SubscribeButton from "./ui/SubscribeButton";
 import LikeButton from "./ui/LikeButton";
 import DownloadButton from "./ui/DownloadButton";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { EllipsisVertical } from "lucide-react";
 
 interface Props {
   video: singleVideoIncludeType;
@@ -57,12 +64,38 @@ const Video = async ({ video }: Props) => {
             </div>
           </div>
           <SubscribeButton
+            className="hidden md:flex"
             userId={video.user.id}
             loggedInUser={user}
             initialSubscribed={initialSubscribedState}
           />
         </div>
-        <div className="flex items-center gap-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="md:hidden">
+            <EllipsisVertical />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <SubscribeButton
+                userId={video.user.id}
+                loggedInUser={user}
+                initialSubscribed={initialSubscribedState}
+              />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <LikeButton
+                className="w-full"
+                isUserSignIn={!!user}
+                initialLikeState={initialLikeState}
+                videoId={video.id}
+              />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <DownloadButton videoUrl={video.video} />
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <div className="hidden items-center gap-4 md:flex">
           <LikeButton
             isUserSignIn={!!user}
             initialLikeState={initialLikeState}

@@ -6,17 +6,20 @@ import { subscribe, unsubscribe } from "../../actions/subscribe";
 import { InitialSubscribeType } from "@/types";
 import useSubscribe from "@/hooks/useSubscribe";
 import { User } from "@prisma/client";
+import { cn } from "@/lib/utils";
 
 interface Props {
   loggedInUser: User | null;
   initialSubscribed: InitialSubscribeType;
   userId: string;
+  className?: string;
 }
 
 const SubscribeButton = ({
   initialSubscribed,
   loggedInUser,
   userId,
+  className,
 }: Props) => {
   const { data } = useSubscribe(initialSubscribed, userId, !!loggedInUser);
 
@@ -59,7 +62,7 @@ const SubscribeButton = ({
       onClick={() => mutate(userId)}
       variant={data.isSubscribed ? "destructive" : "default"}
       disabled={!loggedInUser || isMyVideo}
-      className="rounded-lg disabled:bg-gray-600"
+      className={cn("rounded-lg disabled:bg-gray-600", className)}
     >
       <Bell className="mr-4 size-5" />
       {data.isSubscribed ? "Unsubscribe" : "Subscribe"}
