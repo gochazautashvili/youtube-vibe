@@ -32,7 +32,7 @@ const Search = ({ className }: Props) => {
         className="h-full w-full rounded-none border-none text-base outline-none"
         placeholder="Search"
       />
-      <Button type="submit" className="h-full rounded-none">
+      <Button type="submit" className="h-full rounded-none dark:bg-black">
         <SearchIcon />
       </Button>
     </form>
